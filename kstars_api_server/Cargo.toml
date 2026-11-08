@@ -1,0 +1,13 @@
+[package]
+name = "kstars_api_server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+kstars_dbus = { version = "0.1.0", path = "../kstars_dbus" }
+prost = "0.14.4"
+tokio = { version = "1.54.1", features = ["full"] }
+tonic = "0.14.9"
+
+[build-dependencies]
+tonic-prost-build = "0.14.9"

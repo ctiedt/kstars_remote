@@ -1,0 +1,3 @@
+[workspace]
+members = ["kstars_dbus", "kstars_api_server"]
+resolver = "3"

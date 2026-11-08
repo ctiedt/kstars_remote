@@ -1,0 +1,120 @@
+   <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="org.kde.kstars.Ekos.Mount">
+    <property access="readwrite" type="s" name="opticalTrain"/>
+    <property access="read" type="as" name="logText"/>
+    <property access="read" type="b" name="canPark"/>
+    <property access="read" type="i" name="slewStatus"/>
+    <property access="readwrite" type="ad" name="altitudeLimits">
+      <annotation value="QList&lt;double&gt;" name="org.qtproject.QtDBus.QtTypeName"/>
+    </property>
+    <property access="readwrite" type="b" name="altitudeLimitsEnabled"/>
+    <property access="readwrite" type="d" name="hourAngleLimit"/>
+    <property access="readwrite" type="b" name="hourAngleLimitEnabled"/>
+    <property access="read" type="ad" name="equatorialCoords">
+      <annotation value="QList&lt;double&gt;" name="org.qtproject.QtDBus.QtTypeName"/>
+    </property>
+    <property access="read" type="ad" name="horizontalCoords">
+      <annotation value="QList&lt;double&gt;" name="org.qtproject.QtDBus.QtTypeName"/>
+    </property>
+    <property access="readwrite" type="i" name="slewRate"/>
+    <property access="read" type="d" name="hourAngle"/>
+    <property access="read" type="i" name="status">
+      <annotation value="ISD::Mount::Status" name="org.qtproject.QtDBus.QtTypeName"/>
+    </property>
+    <property access="read" type="i" name="parkStatus">
+      <annotation value="ISD::ParkStatus" name="org.qtproject.QtDBus.QtTypeName"/>
+    </property>
+    <property access="read" type="i" name="pierSide">
+      <annotation value="ISD::Mount::PierSide" name="org.qtproject.QtDBus.QtTypeName"/>
+    </property>
+    <method name="slew">
+      <arg direction="out" type="b"/>
+      <arg direction="in" type="d" name="RA"/>
+      <arg direction="in" type="d" name="DEC"/>
+    </method>
+    <method name="sync">
+      <arg direction="out" type="b"/>
+      <arg direction="in" type="d" name="RA"/>
+      <arg direction="in" type="d" name="DEC"/>
+    </method>
+    <method name="gotoTarget">
+      <arg direction="out" type="b"/>
+      <arg direction="in" type="s" name="target"/>
+    </method>
+    <method name="syncTarget">
+      <arg direction="out" type="b"/>
+      <arg direction="in" type="s" name="target"/>
+    </method>
+    <method name="abort">
+      <arg direction="out" type="b"/>
+    </method>
+    <method name="park">
+      <arg direction="out" type="b"/>
+    </method>
+    <method name="unpark">
+      <arg direction="out" type="b"/>
+    </method>
+    <method name="resetModel">
+      <arg direction="out" type="b"/>
+    </method>
+    <method name="setMeridianFlipValues">
+      <arg direction="in" type="b" name="activate"/>
+      <arg direction="in" type="d" name="hours"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <signal name="newStatus">
+      <arg direction="out" type="(i)" name="status"/>
+      <annotation value="ISD::Mount::Status" name="org.qtproject.QtDBus.QtTypeName.In0"/>
+      <annotation value="ISD::Mount::Status" name="org.qtproject.QtDBus.QtTypeName.Out0"/>
+    </signal>
+    <signal name="newParkStatus">
+      <arg direction="out" type="(i)" name="status"/>
+      <annotation value="ISD::ParkStatus" name="org.qtproject.QtDBus.QtTypeName.In0"/>
+      <annotation value="ISD::ParkStatus" name="org.qtproject.QtDBus.QtTypeName.Out0"/>
+    </signal>
+    <signal name="pierSideChanged">
+      <arg direction="out" type="(i)" name="side"/>
+      <annotation value="ISD::Mount::PierSide" name="org.qtproject.QtDBus.QtTypeName.In0"/>
+      <annotation value="ISD::Mount::PierSide" name="org.qtproject.QtDBus.QtTypeName.Out0"/>
+    </signal>
+    <signal name="newMeridianFlipSetup">
+    </signal>
+    <signal name="ready"/>
+  </interface>
+  <interface name="org.freedesktop.DBus.Properties">
+    <method name="Get">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="property_name" type="s" direction="in"/>
+      <arg name="value" type="v" direction="out"/>
+    </method>
+    <method name="Set">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="property_name" type="s" direction="in"/>
+      <arg name="value" type="v" direction="in"/>
+    </method>
+    <method name="GetAll">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="values" type="a{sv}" direction="out"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+    </method>
+    <signal name="PropertiesChanged">
+      <arg name="interface_name" type="s" direction="out"/>
+      <arg name="changed_properties" type="a{sv}" direction="out"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="QVariantMap"/>
+      <arg name="invalidated_properties" type="as" direction="out"/>
+    </signal>
+  </interface>
+  <interface name="org.freedesktop.DBus.Introspectable">
+    <method name="Introspect">
+      <arg name="xml_data" type="s" direction="out"/>
+    </method>
+  </interface>
+  <interface name="org.freedesktop.DBus.Peer">
+    <method name="Ping"/>
+    <method name="GetMachineId">
+      <arg name="machine_uuid" type="s" direction="out"/>
+    </method>
+  </interface>
+</node>

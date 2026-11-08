@@ -1,0 +1,203 @@
+   <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
+"http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
+<node>
+  <interface name="org.kde.kstars.Ekos.Capture">
+    <property access="readwrite" type="s" name="targetName"/>
+    <property access="readwrite" type="s" name="observerName"/>
+    <property access="readwrite" type="s" name="opticalTrain"/>
+    <property access="read" type="s" name="camera"/>
+    <property access="read" type="s" name="filterWheel"/>
+    <property access="readwrite" type="s" name="filter"/>
+    <property access="readwrite" type="b" name="coolerControl"/>
+    <property access="read" type="as" name="logText"/>
+    <property access="read" type="i" name="status">
+      <annotation value="Ekos::CaptureState" name="org.qtproject.QtDBus.QtTypeName"/>
+    </property>
+    <method name="start">
+      <arg direction="in" type="s" name="train"/>
+      <arg direction="out" type="s"/>
+    </method>
+    <method name="abort">
+      <arg direction="in" type="s" name="train"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="suspend">
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="stop">
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="pause">
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="toggleSequence">
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="restartCamera">
+      <arg direction="in" type="s" name="name"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="toggleVideo">
+      <arg direction="in" type="b" name="enabled"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="findCameraPosition">
+      <arg direction="out" type="i"/>
+      <arg direction="in" type="s" name="train"/>
+      <arg direction="in" type="b" name="addIfNecessary"/>
+    </method>
+    <method name="loadSequenceQueue">
+      <arg direction="out" type="b"/>
+      <arg direction="in" type="s" name="fileURL"/>
+      <arg direction="in" type="s" name="train"/>
+      <arg direction="in" type="b" name="isMaster"/>
+      <arg direction="in" type="s" name="targetName"/>
+    </method>
+    <method name="saveSequenceQueue">
+      <arg direction="out" type="b"/>
+      <arg direction="in" type="s" name="path"/>
+    </method>
+    <method name="clearSequenceQueue">
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="getSequenceQueueStatus">
+      <arg direction="out" type="s"/>
+    </method>
+    <method name="setMaximumGuidingDeviation">
+      <arg direction="in" type="b" name="enable"/>
+      <arg direction="in" type="d" name="value"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="setInSequenceFocus">
+      <arg direction="in" type="b" name="enable"/>
+      <arg direction="in" type="d" name="HFR"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="getJobCount">
+      <arg direction="out" type="i"/>
+    </method>
+    <method name="getPendingJobCount">
+      <arg direction="out" type="i"/>
+    </method>
+    <method name="getJobState">
+      <arg direction="out" type="s"/>
+      <arg direction="in" type="i" name="id"/>
+    </method>
+    <method name="getJobFilterName">
+      <arg direction="out" type="s"/>
+      <arg direction="in" type="i" name="id"/>
+    </method>
+    <method name="getJobImageProgress">
+      <arg direction="out" type="i"/>
+      <arg direction="in" type="i" name="id"/>
+    </method>
+    <method name="getJobImageCount">
+      <arg direction="out" type="i"/>
+      <arg direction="in" type="i" name="id"/>
+    </method>
+    <method name="getJobExposureProgress">
+      <arg direction="out" type="d"/>
+      <arg direction="in" type="i" name="id"/>
+    </method>
+    <method name="getJobExposureDuration">
+      <arg direction="out" type="d"/>
+      <arg direction="in" type="i" name="id"/>
+    </method>
+    <method name="getJobFrameType">
+      <arg direction="out" type="i"/>
+      <arg direction="in" type="i" name="id"/>
+    </method>
+    <method name="getJobPlaceholderFormat">
+      <arg direction="out" type="s"/>
+    </method>
+    <method name="getJobPreviewFileName">
+      <arg direction="out" type="s"/>
+    </method>
+    <method name="getProgressPercentage">
+      <arg direction="out" type="d"/>
+    </method>
+    <method name="getActiveJobID">
+      <arg direction="out" type="i"/>
+    </method>
+    <method name="getActiveJobRemainingTime">
+      <arg direction="out" type="i"/>
+    </method>
+    <method name="getOverallRemainingTime">
+      <arg direction="out" type="i"/>
+    </method>
+    <method name="clearAutoFocusHFR">
+      <arg direction="in" type="s" name="trainname"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="ignoreSequenceHistory">
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="setCapturedFramesMap">
+      <arg direction="in" type="s" name="signature"/>
+      <arg direction="in" type="i" name="count"/>
+      <arg direction="in" type="s" name="train"/>
+      <annotation value="true" name="org.freedesktop.DBus.Method.NoReply"/>
+    </method>
+    <method name="setPicturesDirectory">
+      <arg direction="in" type="s" name="path"/>
+      <arg direction="out" type="b"/>
+    </method>
+    <method name="getPicturesDirectory">
+      <arg direction="out" type="s"/>
+    </method>
+    <method name="mainCameraDeviceName">
+      <arg direction="out" type="s"/>
+    </method>
+    <signal name="newLog">
+      <arg direction="out" type="s" name="text"/>
+    </signal>
+    <signal name="meridianFlipStarted"/>
+    <signal name="newStatus">
+      <arg direction="out" type="(i)" name="status"/>
+      <arg direction="out" type="s" name="trainname"/>
+      <arg direction="out" type="i" name="cameraID"/>
+      <annotation value="Ekos::CaptureState" name="org.qtproject.QtDBus.QtTypeName.Out0"/>
+    </signal>
+    <signal name="captureComplete">
+      <arg direction="out" type="a{sv}" name="metadata"/>
+      <arg direction="out" type="s" name="train"/>
+      <annotation value="QVariantMap" name="org.qtproject.QtDBus.QtTypeName.In0"/>
+      <annotation value="QVariantMap" name="org.qtproject.QtDBus.QtTypeName.Out0"/>
+    </signal>
+    <signal name="ready"/>
+  </interface>
+  <interface name="org.freedesktop.DBus.Properties">
+    <method name="Get">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="property_name" type="s" direction="in"/>
+      <arg name="value" type="v" direction="out"/>
+    </method>
+    <method name="Set">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="property_name" type="s" direction="in"/>
+      <arg name="value" type="v" direction="in"/>
+    </method>
+    <method name="GetAll">
+      <arg name="interface_name" type="s" direction="in"/>
+      <arg name="values" type="a{sv}" direction="out"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="QVariantMap"/>
+    </method>
+    <signal name="PropertiesChanged">
+      <arg name="interface_name" type="s" direction="out"/>
+      <arg name="changed_properties" type="a{sv}" direction="out"/>
+      <annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="QVariantMap"/>
+      <arg name="invalidated_properties" type="as" direction="out"/>
+    </signal>
+  </interface>
+  <interface name="org.freedesktop.DBus.Introspectable">
+    <method name="Introspect">
+      <arg name="xml_data" type="s" direction="out"/>
+    </method>
+  </interface>
+  <interface name="org.freedesktop.DBus.Peer">
+    <method name="Ping"/>
+    <method name="GetMachineId">
+      <arg name="machine_uuid" type="s" direction="out"/>
+    </method>
+  </interface>
+</node>
