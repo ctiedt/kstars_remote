@@ -1,0 +1,25 @@
+syntax = "proto3";
+package ekos;
+
+message Empty {}
+
+message TrainRequest {
+  string train = 1;
+}
+
+message TrainResponse {
+  string train = 1;
+}
+
+message StartResponse {
+  string response = 1;
+}
+
+service Capture {
+  rpc Start(TrainRequest) returns (StartResponse);
+  rpc Abort(TrainRequest) returns (Empty);
+  rpc Suspend(Empty) returns (Empty);
+  rpc Pause(Empty) returns (Empty);
+  rpc Stop(Empty) returns (Empty);
+  rpc OpticalTrain(Empty) returns (TrainResponse);
+  }

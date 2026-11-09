@@ -13,7 +13,12 @@ fn main() -> Result<(), Box<dyn Error>> {
     for interface in std::fs::read_dir(intf_dir)? {
         let path = interface?.path();
         let xmldata = std::fs::read_to_string(&path)?;
-        let generated = dbus_codegen::generate(&xmldata, &GenOpts::default())?;
+        let opts = GenOpts {
+            crossroads: false,
+            methodtype: None,
+            ..Default::default()
+        };
+        let generated = dbus_codegen::generate(&xmldata, &opts)?;
         std::fs::write(
             format!(
                 "{}/{}.rs",
